@@ -1,7 +1,16 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'faker'
+
 
 require_relative 'config/application'
+
+
+desc "console" 
+task "console" do
+  exec 'irb -r./config/application.rb'
+end
+
 
 desc "create the database"
 task "db:create" do
@@ -26,6 +35,8 @@ end
 
 desc "populate the test database with sample data"
 task "db:seed" do
+
+  # Song.create(title: 'As long as you love me', artist: Faker::Name.name, duration: '3:12')
   require APP_ROOT.join('db', 'seeds.rb')
 end
 
